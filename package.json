@@ -1,0 +1,26 @@
+{
+  "name": "advent-of-code-2021",
+  "version": "1.0.0",
+  "description": "Advent of Code Puzzles - 2021",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "npm run build",
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "elm-tooling install",
+    "build": "elm make --optimize src/Main.elm --output=build/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asharman/advent-of-code-2021.git"
+  },
+  "author": "asharman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/asharman/advent-of-code-2021/issues"
+  },
+  "homepage": "https://github.com/asharman/advent-of-code-2021#readme",
+  "devDependencies": {
+    "elm-tooling": "^1.6.0"
+  }
+}
