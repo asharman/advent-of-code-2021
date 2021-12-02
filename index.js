@@ -8,6 +8,7 @@ const puzzleInput = fs.readFileSync(`input/2021-${day}.txt`).toString()
 var main = Elm[`Day${day}`].init();
 main.ports.receiveInput.send(puzzleInput)
 
-main.ports.output.subscribe(data => {
-    console.log(JSON.stringify(data))
+main.ports.output.subscribe(({ part1, part2 }) => {
+    console.log("Part 1 Solution: ", part1)
+    console.log("Part 2 Solution: ", part2)
 })

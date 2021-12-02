@@ -67,9 +67,12 @@ decode input =
         |> Input
 
 
-encode : Int -> Value
+encode : { part1 : Int, part2 : Int } -> Value
 encode answer =
-    Encode.int answer
+    Encode.object
+        [ ( "part1", Encode.int answer.part1 )
+        , ( "part2", Encode.int answer.part2 )
+        ]
 
 
 
@@ -185,7 +188,14 @@ update msg model =
                 input =
                     decode inputString
             in
-            ( model, output (solve input |> encode) )
+            ( model
+            , output
+                (encode
+                    { part1 = solve input
+                    , part2 = solve2 input
+                    }
+                )
+            )
 
 
 port receiveInput : (String -> msg) -> Sub msg
