@@ -6,7 +6,7 @@
   "scripts": {
     "prestart": "npm run build",
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "elm-test",
     "postinstall": "elm-tooling install",
     "build": "elm make --optimize src/Main.elm --output=build/main.js"
   },
@@ -22,5 +22,6 @@
   "homepage": "https://github.com/asharman/advent-of-code-2021#readme",
   "devDependencies": {
     "elm-tooling": "^1.6.0"
-  }
+  },
+  "dependencies": {}
 }

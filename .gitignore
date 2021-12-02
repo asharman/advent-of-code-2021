@@ -1,8 +1,11 @@
 # Build
 build
+input/**
 
 # Elm Stuff
 elm-stuff
+
+.envrc
 
 # Logs
 logs
