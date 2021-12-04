@@ -5,6 +5,7 @@ import Html exposing (input)
 import Json.Encode as Encode exposing (Value)
 import Platform exposing (Program)
 import Test exposing (..)
+import Utils.List as List
 
 
 type alias Binary =
@@ -58,20 +59,8 @@ solve (Input input) =
 
 significantBits : (Int -> Int -> Bool) -> List Binary -> Binary
 significantBits f binary =
-    let
-        groupPositions b =
-            let
-                numberOfPosition =
-                    binary
-                        |> (List.head >> Maybe.withDefault [])
-                        |> List.length
-            in
-            b
-                |> List.map (List.map List.singleton)
-                |> List.foldr (List.map2 List.append) (List.repeat numberOfPosition [])
-    in
     binary
-        |> groupPositions
+        |> List.transpose
         |> List.map (List.partition identity)
         |> List.map
             (\( trues, falses ) ->
