@@ -1,10 +1,8 @@
 port module Day04 exposing (..)
 
-import Debug
 import Expect
 import Html exposing (input)
 import Json.Encode as Encode exposing (Value)
-import Maybe exposing (withDefault)
 import Parser exposing ((|.), (|=), Parser)
 import Platform exposing (Program)
 import Test exposing (..)
@@ -62,7 +60,10 @@ findLastWinningBoard moves boards =
                         ( movesToConsider, board )
 
                     else
-                        iter (List.take 1 futureMoves ++ movesToConsider) (List.drop 1 futureMoves) (List.filter (checkBoard movesToConsider >> not) boardsToKeepChecking)
+                        iter
+                            (List.take 1 futureMoves ++ movesToConsider)
+                            (List.drop 1 futureMoves)
+                            (List.filter (checkBoard movesToConsider >> not) boardsToKeepChecking)
     in
     iter (List.take 1 moves) (List.drop 1 moves) boards
 
