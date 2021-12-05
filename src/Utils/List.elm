@@ -1,5 +1,6 @@
 module Utils.List exposing (..)
 
+import Dict exposing (Dict)
 import Expect
 import Test exposing (..)
 
@@ -20,6 +21,33 @@ transpose matrix =
         |> List.foldr (List.map2 List.append) (List.repeat (numberOfRows matrix) [])
 
 
+count : List comparable -> Dict comparable Int
+count =
+    List.foldl
+        (\a dict ->
+            Dict.update a
+                (\maybeCount ->
+                    case maybeCount of
+                        Just b ->
+                            Just (b + 1)
+
+                        Nothing ->
+                            Just 1
+                )
+                dict
+        )
+        Dict.empty
+
+
+absoluteRange : Int -> Int -> List Int
+absoluteRange a b =
+    if b < a then
+        List.range b a |> List.reverse
+
+    else
+        List.range a b
+
+
 allTests : Test
 allTests =
     describe "Functions"
@@ -34,5 +62,22 @@ allTests =
                             [ [ 1, 3 ]
                             , [ 2, 4 ]
                             ]
+            ]
+        , describe "count"
+            [ test "count values into a dictionary" <|
+                \_ ->
+                    count [ 1, 2, 1, 3, 7, 4, 3 ]
+                        |> Dict.get 1
+                        |> Expect.equal (Just 2)
+            ]
+        , describe "absoluteRange"
+            [ test "produces a range of numbers between the smaller and larger number inclusive" <|
+                \_ ->
+                    absoluteRange 5 2
+                        |> Expect.equal [ 5, 4, 3, 2 ]
+            , test "case 2" <|
+                \_ ->
+                    absoluteRange 1 3
+                        |> Expect.equal [ 1, 2, 3 ]
             ]
         ]

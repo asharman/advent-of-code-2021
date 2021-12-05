@@ -22,6 +22,5 @@
   "homepage": "https://github.com/asharman/advent-of-code-2021#readme",
   "devDependencies": {
     "elm-tooling": "^1.6.0"
-  },
-  "dependencies": {}
+  }
 }
