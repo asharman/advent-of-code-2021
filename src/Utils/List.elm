@@ -48,6 +48,11 @@ absoluteRange a b =
         List.range a b
 
 
+average : List Int -> Float
+average xs =
+    (toFloat <| List.sum xs) / (toFloat <| List.length xs)
+
+
 allTests : Test
 allTests =
     describe "Functions"
@@ -79,5 +84,11 @@ allTests =
                 \_ ->
                     absoluteRange 1 3
                         |> Expect.equal [ 1, 2, 3 ]
+            ]
+        , describe "average"
+            [ test "averages a list of integers" <|
+                \_ ->
+                    average [ 1, 3, 4, 5 ]
+                        |> Expect.within (Expect.Absolute 0.000001) 3.25
             ]
         ]
